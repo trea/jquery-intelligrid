@@ -1,0 +1,138 @@
+<!doctype html>
+<html>
+	<head>
+		<title>jQuery Intelligrid Demonstration</title>
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+		<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.0.4/css/bootstrap-combined.min.css">
+		<script type="text/javascript" src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.0.4/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="intelligrid.jquery.js"></script>
+	</head>
+	<body>
+		<div class="navbar">
+			<div class="navbar-inner">
+				<div class="container">
+					<a href="#" class="brand">jQuery Intelligrid</a>
+					<ul class="nav">
+						<li>
+							<a href="http://github.com/treahauet/jquery-intelligrid">Project on Github</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="hero-unit">
+					<h2>Welcome to the jQuery Intelligrid Demo</h2>
+					<p>If you're like me, you hate having action buttons on a table/list for your CRUD actions.  This is 2012 after all!  We should be using something much more appealing!  That is the goal that Intelligrid is out to fix.  Have a look around!</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="span6">
+					<h3>Action Buttons on Every Row?</h3>
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th>#</th>
+								<th>Task</th>
+								<th>Due By</th>
+								<th><!-- Actions --></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>1</td>
+								<td>Call Jon</td>
+								<td>Tomorrow</td>
+								<td>
+									<a href="#" class="btn btn-primary">View</a>
+									<a href="#" class="btn btn-warning">Edit</a>
+									<a href="#" class="btn btn-danger">Delete</a>
+								</td>
+							</tr>
+							<tr>
+								<td>2</td>
+								<td>Email prototype</td>
+								<td>Tomorrow</td>
+								<td>
+									<a href="#" class="btn btn-primary">View</a>
+									<a href="#" class="btn btn-warning">Edit</a>
+									<a href="#" class="btn btn-danger">Delete</a>
+								</td>
+							</tr>
+							<tr>
+								<td>3</td>
+								<td>Prepare pitch</td>
+								<td>Tuesday</td>
+								<td>
+									<a href="#" class="btn btn-primary">View</a>
+									<a href="#" class="btn btn-warning">Edit</a>
+									<a href="#" class="btn btn-danger">Delete</a>
+								</td>
+							</tr>
+							<tr>
+								<td>4</td>
+								<td>Prepare financials for month end meeting</td>
+								<td>Friday</td>
+								<td>
+									<a href="#" class="btn btn-primary">View</a>
+									<a href="#" class="btn btn-warning">Edit</a>
+									<a href="#" class="btn btn-danger">Delete</a>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="span6">
+					<h3>Let's Not!</h3>
+					<table class="table table-striped" id="intel">
+						<thead>
+							<tr>
+								<th>#</th>
+								<th>Task</th>
+								<th>Due By</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>1</td>
+								<td>Call Jon</td>
+								<td>Tomorrow</td>
+							</tr>
+							<tr>
+								<td>2</td>
+								<td>Email prototype</td>
+								<td>Tomorrow</td>
+							</tr>
+							<tr>
+								<td>3</td>
+								<td>Prepare pitch</td>
+								<td>Tuesday</td>
+							</tr>
+							<tr>
+								<td>4</td>
+								<td>Prepare financials for month end meeting</td>
+								<td>Friday</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+			$("#intel").intelligrid({
+				actions: {
+					// You don't have to create a select all/none method.  We'll do that for you.
+					// Also, you don't have to do a refresh method either, but we'll do one here so you can see how to override it
+					refresh: {
+						label: 'Refresh',
+						icon: 'icon-refresh',
+						action: function() {
+							document.location = document.location;
+						}
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

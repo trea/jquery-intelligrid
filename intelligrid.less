@@ -1,0 +1,27 @@
+@selected: #eee;
+div[data-actions] {
+	margin: 5px auto;
+
+	div.group {
+		display: inline-block;
+		margin-right: 10px;
+	}
+	a {
+		margin: auto 1.5px;
+	}
+}
+table[data-intelligrid] {
+	tbody {
+		tr td {
+			-webkit-touch-callout: none;
+			-webkit-user-select: none;
+			-khtml-user-select: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
+			user-select: none;
+		}
+		tr.active td {
+			background-color: @selected;
+		}
+	}
+}

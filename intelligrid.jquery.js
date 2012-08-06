@@ -127,6 +127,11 @@
                         select($(this));
                     }
                 });
+                $(tbody).on('dblclick', 'tr', function(){
+                    if (actions.hasOwnProperty('view')) {
+                        actions.view.action(this);
+                    }
+                });
                 // We've got some actions to use on this table.  So add a th/td for being selected/not selected indicator
 	        	$(this).children('thead').children('tr').children('th:first-child').before('<th></th>');  /*  In the table header */
 	        	$(this).children('tbody').find('tr').each(function(){
@@ -144,8 +149,14 @@
                 $(actbar).on('click', 'div [data-none]',function(){
                     deselect('all');
                 });
+                $(actbar).on('click', 'div [data-add]', function(){
+                    if (actions.hasOwnProperty('add')) {
+                        actions.add.action();
+                    }
+                });
 
     			for (ind in actions) {
+                    if (ind != 'view') {
         				var action = actions[ind];
                         if (ind == 'refresh') {
                             var refreshed = true;
@@ -160,6 +171,7 @@
 
                         var single = (typeof(action.single) != undefined && action.single == true) ? 'single' : '';
         				var button = $(actbar).append('<a class="btn btn-mini ' + single + '" title="' + action.label + '" ' + datatag + '><i class="' + action.icon + '"></i></a>').children('a[data-action=' + ind +']');
+                    }
                 }
                 if (!refreshed) {
                     $(actbar).find('div.group:first-child').after('<div class="group"><a class="btn btn-mini" data-refresh title="Refresh"><i class="icon-refresh"></i></a></div>');
@@ -168,7 +180,12 @@
                     $(events).trigger('handleAction', [$(this)]);
                 });
         	}
-        	$("[data-actions] a[title]").tooltip();
+            if (jQuery.fn.hasOwnProperty('tooltip')) {
+            	$("[data-actions] a[title]").tooltip();
+            }
+            else if (jQuery.fn.hasOwnProperty('tipsy')) {
+                $("[data-actions] a[title]").tipsy();
+            }
             applicableAction();
         }
     });

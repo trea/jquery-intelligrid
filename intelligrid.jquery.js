@@ -14,12 +14,27 @@
                     rows = allRows;
                 }
                 $(rows).each(function(){
-                    $(this).addClass('active');
-                    $(this).children('td:first-child').children('i').addClass('icon-check');
+                        $(this).addClass('active');
+                        $(this).children('td:first-child').children('i').addClass('icon-check');
                 });
                 currentSelection = $(tbody).find('tr.active');
                 $(events).trigger('selectionChange');
             };
+            var toggleselect = function(rows) {
+                if (typeof rows == 'string' && rows == 'all') {
+                    rows = allRows;
+                }
+                $(rows).each(function(){
+                    if ($(this).is('.active')) {
+                        $(this).removeClass('active');
+                        $(this).children('td:first-child').children('i').removeClass('icon-check');
+                    }
+                    else {
+                        $(this).addClass('active');
+                        $(this).children('td:first-child').children('i').addClass('icon-check');
+                    }
+                });
+            }
             var deselect = function(rows) {     /*  Deselect one or all of the things */
                 if (typeof rows == 'string' && rows == 'all') {
                     rows = allRows;
@@ -98,7 +113,7 @@
                 $(tbody).on('click', 'tr', function(e){
                     if (e.ctrlKey) {
                         // Add this to the current selection
-                        select($(this));
+                        toggleselect($(this));
                     }
                     else if (e.shiftKey) {
                         // Add multiple to the current selection
